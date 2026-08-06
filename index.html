@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miguel Monteiro Portfolio</title>
+    <link rel="icon" type="image/png" href="./photos/main/MM_logo.png?v=2">
+
+    <style>
+        /* Color Palette / CSS Variables */
+        :root {
+            --bg-dark: #121212;
+            --bg-card: #1c1e20;
+            --text-main: #ffffff;
+            --text-muted: #767777;
+            --primary: #5177a9;
+            --primary-light: #6d87ae;
+            --accent-red: #ea5963;
+        }
+
+        @font-face {
+            font-family: 'Gotham Narrow';
+            src: url('./fonts/Gotham_Narrow_Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gotham Narrow';
+            src: url('./fonts/Gotham_Narrow_Medium.ttf') format('truetype');
+            font-weight: 500;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Gotham Narrow';
+            src: url('./fonts/Gotham_Narrow_Light.ttf') format('truetype');
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gotham Narrow', 'Gotham', 'Arial Narrow', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 75px;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            max-width: 100vw;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+            margin: 60px 0 10px 0;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* Top Navigation Bar */
+        header {
+            width: 100%;
+            height: 60px;
+            background: radial-gradient(circle at 0% 0%, #5177a9 0%, #5177a9 40%, #6d87ae 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+        }
+
+        #main-container {
+            max-width: 1450px;
+            margin: 0 auto;
+            box-shadow: 25px 0 35px -10px #000000, -25px 0 35px -10px #000000;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--bg-dark);
+            margin-left: calc(100px + 150px + 34px);
+        }
+
+        .logo-content {
+            position: absolute;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding-left: 34px;
+            margin-left: calc(100px + 150px + 34px);
+            color: var(--bg-dark);
+        }
+
+        nav {
+            margin-right: calc(100px + 150px + 34px);
+        }
+
+        nav a {
+            color: var(--bg-dark);
+            text-decoration: none;
+            margin-left: 48px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: ease-in-out 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--text-main)
+        }
+
+        /* Dropdown Window */
+        .dropdown-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 68px;
+            right: calc(100px + 150px + 34px*2);
+            background-color: var(--bg-dark);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            min-width: 180px;
+            overflow: hidden;
+            z-index: 100;
+        }
+
+        .dropdown-menu.open {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-muted);
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--primary);
+            color: var(--text-main);
+        }        
+
+        /* Introduction Section */
+        .introduction {
+            position: relative;
+            width: 100%;
+            height: 750px;
+            max-width: 1450px;
+            margin: 0 auto;
+            padding-top: 60px;
+            display: flex;
+            background: url('./photos/main/me_main.png') center/cover no-repeat;
+        }
+
+        .introduction-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                #1c1e20 0%,
+                rgba(28, 30, 32, 0.85) 30%,
+                rgba(28, 30, 32, 0.6) 40%,
+                transparent 45%
+            );
+            display: flex;
+            align-items: center;
+            padding-left: 100px;
+            z-index: 1;
+        }
+
+        .introduction-content p {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            z-index: 2;
+            max-width: 390px;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        .introduction-content p strong {
+            font-weight: 500;
+        }
+
+        .introduction-content h1 {
+            font-size: 5rem;
+            line-height: 0.95;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        .introduction-content h2 {
+            font-size: 2.7rem;
+            color: var(--primary);
+            margin: 10px 0 20px 0;
+            font-weight: 700;
+        }
+
+        /* Project Portfolio Section */
+        .portfolio-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border-top: 1px solid var(--text-muted);
+            margin-top: 32px;
+        }
+
+        .content-wrapper {
+            max-width: 1450px; 
+            margin: 0 auto;
+            border-left: 1.5px solid rgba(28, 30, 32, 0.8);  
+            border-right: 1.5px solid rgba(28, 30, 32, 0.8);
+            padding: 60px 100px;
+
+        }
+
+        /* Tabs Container */
+        .portfolio-tabs {
+            display: flex;
+            gap: 64px;
+            margin-top: 60px;
+            height: 1.75rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tab-separator {
+            width: 2px;
+            height: 100%;
+            background-color: var(--text-muted);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            color: var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        /* Search Controls */
+        .search-controls-container {
+            display: flex;
+            margin: 60px 250px 0;
+            flex-direction: column;
+            gap: 12px;
+            animation: fadeIn 0.3s ease forwards;
+            padding: 16px;
+            border-top: 1px solid var(--text-muted);
+            border-bottom: 1px solid var(--text-muted);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .filter-label {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 120px;
+        }
+
+        .tag-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag-pill {
+            color: var(--text-muted);
+            padding: 3px 6px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 2px solid var(--text-muted);
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .tag-pill:hover {
+            color: var(--text-main);
+            border-color: var(--primary);
+            background-color: rgba(81, 119, 169, 0.38);
+        }
+        
+        .tag-pill.active {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .clear-filters-btn {
+            background: none;
+            border: 2px solid var(--text-muted);
+            color: var(--text-muted);
+            padding: 3px 6px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: auto;
+            transition: all 0.2s ease;
+        }
+
+        .clear-filters-btn:hover {
+            color: var(--text-main);
+            border-color: var(--accent-red);
+            background-color: rgba(234, 89, 99, 0.38);
+        }
+
+        /* Project Cards Container */
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 80px;
+            width: 100%;
+            margin: 60px 0 60px;
+            min-height: 400px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header-title {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+            padding: 12px 16px;
+            font-size: 1.1rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .project-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            border: 4px solid var(--primary);
+            color: var(--text-main);
+            background-color: rgba(81, 119, 169, 0.38);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            backdrop-filter: blur(4px);
+        }
+        
+        .project-card:hover .project-card-overlay {
+            opacity: 1;
+        }
+
+        .project-card-text {
+            padding: 24px 16px;
+            text-align: center;
+            color: var(--text-main);
+            flex-grow: 1;
+        }
+
+        .project-card-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 6px;
+            padding: 12px 16px 4px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card-tag {
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Modal Base */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-header {
+            top: 0;
+            left: 0;
+            display: flex;
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            background-color: var(--primary);
+            height: 64px;
+            width: 100%;   
+        }
+
+        .modal-text-header {
+            top: 16px;
+            left: 32px;
+            font-weight: 700;
+            position: absolute;
+            color: var(--bg-dark);
+            font-size: 2rem;
+        }
+
+        .modal-content {
+            background-color: var(--bg-dark);
+            padding: 32px;
+            border-radius: 8px;
+            display: flex;
+            gap: 32px;
+            min-height: 700px;
+            width: 1400px;
+            position: relative;
+        }
+
+        .modal-text-content {
+            flex: 0 0 45%;                  
+            min-width: 0;
+            margin-top: 32px; 
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .modal-content h3 {
+            margin-top: 32px;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .modal-content p, .modal-content ul {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            font-weight: 300;
+        }
+
+        .modal-content ul {
+            margin-left: 32px;
+        }
+
+        .modal-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .link {
+            color: var(--primary-light);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .link:hover {
+            color: var(--text-main);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 25px;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--bg-dark);
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            color: var(--text-main);
+        }
+
+        /* Modal Gallery */
+        .modal-gallery {
+            flex: 1;
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(48px);
+            margin: auto;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.1s ease-in-out;
+            will-change: opacity;
+            transform: translateZ(0);
+        }
+
+        .gallery-item.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .gallery-image {
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+            object-fit: contain;
+        }
+
+        .modal-gallery video {
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        .gallery-caption {
+            width: 100%;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+            text-align: center;
+            z-index: 4;
+            padding-top: 32px;
+            margin-bottom: 32px;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 40%;
+            color: var(--text-muted);
+            border: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 8px;
+            background: rgba(18, 18, 18, 0.85);
+            z-index: 5;
+            box-shadow: 0px 0px 10px rgba(18, 18, 18, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+
+        .gallery-nav:hover {
+            color: var(--text-main);
+            transform: scale(1.1);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 56px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 6;
+            background-color: rgba(18, 18, 18, 0.8);
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--text-muted);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .dot:hover {
+            background-color: var(--text-main);
+            transform: scale(1.25);
+        }
+
+        .dot.active {
+            background-color: var(--primary);
+            transform: scale(1.5);
+        }
+
+        /* Floating Notification Toast */
+        .notification {
+            position: fixed;
+            bottom: 40px;
+            right: 30px;
+            background-color: rgba(28, 30, 32, 0.85);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 20px;
+            color: var(--text-main);
+            z-index: 2000;
+            box-shadow: 0px 4px 15px rgba(28, 30, 32, 0.5);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .projects-list {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .content-wrapper > * {
+                padding: 0 20px;
+            }
+        }
+
+
+
+        /* Awards section */
+        .timeline-split-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            position: relative;
+            width: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(28, 30, 32, 1.00) 0%,
+                rgba(28, 30, 32, 1.00) 30%,
+                rgba(28, 30, 32, 0.95) 45%,
+                rgba(28, 30, 32, 0.75) 60%,                
+                rgba(28, 30, 32, 0.00) 75%
+            );   
+            padding-left: 100px; 
+        }
+
+        .timeline-bg-wrapper,
+        .timeline-content {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .timeline-bg-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            max-height: 1650px;
+            align-self: start;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .timeline-bg-display {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center right;
+            will-change: opacity;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .timeline-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .timeline-bg-display.fade-out {
+            opacity: 0;
+        }        
+
+        .timeline-gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to right,
+                rgba(28, 30, 32, 1.00) 0%,
+                rgba(28, 30, 32, 1.00) 30%,
+                rgba(28, 30, 32, 0.95) 45%,
+                rgba(28, 30, 32, 0.75) 60%,                
+                rgba(28, 30, 32, 0.00) 75%
+            );
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .timeline-content-left {
+            position: relative;
+            z-index: 3;
+            width: 55%;
+            max-width: 750px;
+            padding: 32x;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .timeline-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .timeline-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .timeline-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Badges & Highlights */
+        .timeline-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .timeline-badge.award {
+            background: rgba(18, 18, 18, 0.2);
+            color: #5177a9;
+            border: 1px solid #5177a9;
+        }
+
+        .award-callout {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: radial-gradient(circle at 0% 0%, #5177a9 0%, #5177a9 40%, #6d87ae 100%);;
+            border-radius: 4px;
+            font-weight: 500;
+            color: var(--bg-dark);
+            text-align: justify;
+        }
+
+        .award-callout strong{
+            font-weight: 700;
+        }
+
+        .interactive-timeline {
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 30px;
+        }
+
+        /* Timeline Cards */
+        .timeline-item {
+            position: relative;
+            background: none;
+            padding: 18px 22px;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .timeline-item.expandable {
+            transform: translateX(-4px);
+            width: 550px;
+            cursor: pointer;
+            border-width: 4px;
+            border-left-style: solid;
+            border-color: var(--text-muted);
+            background-color: rgba(18, 18, 18, 0.4);
+        }
+
+        .timeline-item.expandable:hover {
+            border-color: var(--text-main);
+        }
+
+        .timeline-item.expandable.active {
+            border-color: var(--primary);
+            background-color: rgba(18, 18, 18, 0.8);
+        }
+
+        /* Simple Mark Styling (No Card hover effect / No pointer cursor) */
+        .timeline-item.simple-mark {
+            cursor: default;
+        }
+
+        .timeline-item.simple-mark:hover {
+            transform: none;
+        }
+
+        /* Markers */
+        .timeline-marker {
+            position: absolute;
+            left: -31px;
+            top: 22px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg-card);
+            border: 2px solid var(--text-muted);
+            transition: background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .timeline-item.active .timeline-marker {
+            background-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            border-color: var(--primary);
+        }  
+
+        /* Expand Icon Animations */
+        .expand-icon {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-item.timeline-item.expandable:hover .expand-icon {
+            color: var(--text-main);
+        }
+
+        .timeline-item.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Card Body & Details */
+        .timeline-details {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            width: 100%;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease, margin-top 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .timeline-item.active .timeline-details {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* In-Card Media Styles */
+        .timeline-media {
+            padding-top: 14px;
+            padding-bottom: 7px;
+            border-radius: 6px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .timeline-media img {
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            margin: auto;
+        }
+
+        .media-caption {
+            display: block;
+            padding: 6px 10px;
+            background: rgba(0, 0, 0, 0.4);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        @media (max-width: 1024px) {
+            .timeline-content-left {
+                width: 100%;
+                padding: 40px 20px;
+            }
+            .timeline-gradient-overlay {
+                background: rgba(14, 15, 16, 0.92);
+            }
+        }
+
+        /* Skills Section */
+        .skills-section {
+            position: relative;
+            width: 100%;
+            padding: 32px 100px;
+            padding-bottom: 60px;
+            z-index: 2;
+        }
+
+        .skills-container {
+            max-width: 100%;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--text-muted);
+        }
+
+        /* Row Layout */
+        .skill-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            padding: 8px 0;
+            align-items: baseline;
+        }
+
+        .skill-label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .skill-values {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .proficiency {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Interactive Certificate Link Styling */
+        .skill-link {
+            font-size: 1.05rem;
+            color: var(--primary-light);
+            line-height: 1.6;
+            text-decoration-style: underline;
+            transition: all 0.2s ease;
+            font-weight: 700;
+        }
+
+        /* Hover effect to show clickability */
+        .skill-link:hover {
+            color: var(--text-main);
+        }
+
+        .skill-link:hover::after {
+            opacity: 1;
+            transform: translate(1px, -1px);
+        }
+
+        /* Responsive collapse for small screens */
+        @media (max-width: 768px) {
+            .skill-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding: 16px 0;
+            }
+        }
+
+        /* Footer Section */
+        footer {
+            width: 100vw;
+            height: 100px;
+            background: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            padding: 0px 32px;
+            position: static;
+            z-index: 10;
+            overflow: visible;
+            background: radial-gradient(circle at 0% 0%, #5177a9 0%, #5177a9 40%, #6d87ae 100%);
+
+        }
+
+        .footer-left {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--bg-dark);
+            margin-left: calc(100px + 150px + 34px*2)
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            margin-right: calc(100px + 150px + 34px*2);
+        }
+
+        .footer-right a {
+            color: var(--bg-dark);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: ease-in-out 0.2s;
+        }
+
+        .footer-right a:hover {
+            color: var(--text-main);
+        }      
+        
+    </style>
+</head>
+
+<body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Top Bar Navigation -->
+    <header>
+
+        <div class="logo">
+            <a href="#intro" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+                <img src="./photos/main/MM_logo_mono.png" alt="Logo" style="height: 32px;">
+            </a>
+        </div>
+        <div class="logo-content">iguel Monteiro</div>
+    
+        <nav>
+            <a href="./embedded_docs/curriculum_vitae_260315.pdf" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-file-pdf"></i> <strong>CV</strong>
+            </a>
+            <a href="https://www.linkedin.com/in/miguel-monteiro-410937252/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-linkedin"></i> <strong>LinkedIn</strong>
+            </a>
+            <a onclick="copyToClipboard('mail.miguelmonteiro@gmail.com')" style="cursor: pointer;">
+                <i class="fa-solid fa-envelope"></i> <strong>Email</strong>
+            </a>
+            <a onclick="copyToClipboard('+351 960 416 328')" style="cursor: pointer;">
+                <i class="fa-solid fa-phone"></i> <strong>(+351) 960 416 328</strong>
+            </a>
+            <a onclick="toggleDropdown(event)" aria-label="Toggle Navigation" style="cursor: pointer;">
+                <i class="fa-solid fa-bars"></i>
+            </a>     
+        </nav>
+
+        <div id="section-dropdown" class="dropdown-menu">
+            <a href="#intro" onclick="toggleDropdown()"><i class="fa-solid fa-user"></i> Introduction</a>
+            <a href="#projects-section" onclick="toggleDropdown()"><i class="fa-solid fa-cube"></i> Projects</a>
+            <a href="#timeline-section" onclick="toggleDropdown()"><i class="fa-solid fa-timeline"></i> Achievements</a>
+            <a href="#skills-section" onclick="toggleDropdown()"><i class="fa-solid fa-gears"></i> Skills</a>
+        </div> 
+        
+    </header>
+
+    <!-- Content -->
+    <div id="main-container">
+
+        <!-- Main Introduction -->
+        <section id="intro" class="introduction">
+            <div class="introduction-overlay">
+                <div class="introduction-content">
+                    <h1>MIGUEL<br>MONTEIRO</h1>
+                    <h2>Mechanical Engineer</h2>
+                    <p>Engineering student at <strong>TUM</strong>, focused on <strong>structural analysis</strong>, <strong>lightweight design</strong> and <strong>composite materials</strong>.</p>
+                    <p>Strong interest on <strong>high-performance structures</strong>, specially within the <strong>aeronautical</strong> and <strong>automotive</strong> industries.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <div id="projects-section" class="content-wrapper">
+
+            <h2 class="section-title">PROJECTS</h2>
+            <p class="section-description">Click the categories to view different projects and press the cards to view more details.</p>            
+
+            <section class="portfolio-section">
+
+                <div class="portfolio-tabs">
+                    <button class="tab-btn active" onclick="switchTab(event, 'structural')">STRUCTURAL ANALYSIS</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'cad')">CAD DESIGN</button>
+                    <button class="tab-btn" onclick="switchTab(event, 'management')">MANAGEMENT</button>
+                    <div class="tab-separator"></div>
+                    <button class="tab-btn" onclick="switchTab(event, 'custom-search')">CUSTOM SEARCH</button>
+                </div>
+
+                <div id="search-controls" class="search-controls-container" style="display: none;">
+                    <div class="filter-group">
+                        <span class="filter-label">Focus Area</span>
+                        <div class="tag-pills">
+                            <span class="tag-pill" data-tag="Structural" onclick="toggleTagFilter(this)">Structural</span>
+                            <span class="tag-pill" data-tag="CAD" onclick="toggleTagFilter(this)">CAD</span>
+                            <span class="tag-pill" data-tag="Management" onclick="toggleTagFilter(this)">Management</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">FEA Software</span>
+                        <div class="tag-pills">
+                            <span class="tag-pill" data-tag="Abaqus" onclick="toggleTagFilter(this)">Abaqus</span>
+                            <span class="tag-pill" data-tag="nTop" onclick="toggleTagFilter(this)">nTop</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">CAD Software</span>
+                        <div class="tag-pills">
+                            <span class="tag-pill" data-tag="Siemens NX" onclick="toggleTagFilter(this)">Siemens NX</span>
+                            <span class="tag-pill" data-tag="SolidWorks" onclick="toggleTagFilter(this)">SolidWorks</span>
+                            <span class="tag-pill" data-tag="Inventor" onclick="toggleTagFilter(this)">Inventor</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Code Language</span>
+                        <div class="tag-pills">
+                            <span class="tag-pill" data-tag="Python" onclick="toggleTagFilter(this)">Python</span>
+                            <span class="tag-pill" data-tag="MatLab" onclick="toggleTagFilter(this)">MatLab</span>
+                            <span class="tag-pill" data-tag="JavaScript" onclick="toggleTagFilter(this)">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <span class="filter-label">Misalaneous</span>
+                        <div class="tag-pills">
+                            <span class="tag-pill" data-tag="Notion" onclick="toggleTagFilter(this)">Notion</span>                        
+                            <span class="tag-pill" data-tag="Composites" onclick="toggleTagFilter(this)">Composites</span>
+                            <span class="tag-pill" data-tag="Metals" onclick="toggleTagFilter(this)">Metals</span>                
+                        </div>
+                        <button class="clear-filters-btn" onclick="clearAllFilters()">Clear Filters</button>
+                    </div>
+                </div>
+
+                        <div class="projects-list">
+
+                <!-- CARD AND MODAL TEMPLATE -->
+
+                <!-- 
+                    CARD CHECKLIST TO UPDATE:
+                    1. [CATEGORY]       -> Replace "structural" with target tab/category class
+                    2. [ID]             -> Replace all 4 instances of "modal-[ID]" (e.g., modal-PROJECT_NAME)
+                    3. [TAG_NAMES]      -> Replace data-tags and <span class="card-tag"> values
+                    4. [PROJECT_TITLE]  -> Change the card header title
+                    5. [THUMB_PATH]     -> Set the thumbnail image src
+                    6. [ALT_TEXT]       -> Set alt text for thumbnail
+                    7. [SHORT_DESC]     -> Update card preview text
+                    
+                    MODAL CHECKLIST TO UPDATE:
+                    1. modal-[ID]       -> Match the ID used in data-modal above (3 occurrences: div id, close button, prev/next buttons)
+                    2. [PROJECT_TITLE]  -> Update title header
+                    3. [TEXT_CONTENT]   -> Modify section headers (<h3>), paragraphs (<p>), and highlights (<span class="highlight">)
+                    4. [GALLERY_ITEMS]  -> Add/remove gallery items and update image paths (src) + captions
+                -->
+
+                <!------------------------------------------------- [ID] ------------------------------------------------>
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <!--
+                <div class="project-card tab-content [CATEGORY]" data-modal="modal-[ID]" data-tags="[TAG_1] [TAG_2] [TAG_3]">
+                    <div class="card-header-title">[PROJECT_TITLE]</div>
+                
+                    <img src="./photos/main/thumbnails/THB_[ID].png" alt="[ALT_TEXT]" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">[TAG_1]</span>
+                        <span class="card-tag">[TAG_2]</span>
+                        <span class="card-tag">[TAG_3]</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p>Short summary of the project using <strong>bold keywords</strong>.</p>
+                    </div>
+                </div>
+
+                <div id="modal-[ID]" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-[ID]')">&times;</span>
+                    
+                        <span class="modal-text-header">[PROJECT_TITLE]</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>
+                                Description of the project objectives and initial requirements:
+                            </p>
+
+                            <ul>
+                                <li>Requirement 1 <span class="highlight">&le; target_value</span>;</li>
+                                <li>Requirement 2 <span class="highlight">target_value</span>.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>First step of methodology using <strong>key terms</strong>.</p>
+                            <p>Second step of methodology using <strong>key terms</strong>.</p>
+                            <p>Final validation or execution step using <strong>key terms</strong>.</p>
+                        
+                            <h3>Results</h3>
+                            <p>Summary of results achieved:</p>
+                            <ul>
+                                <li>Result 1: <span class="highlight">value</span> - <strong>comparison</strong>;</li>
+                                <li>Result 2: <span class="highlight">value</span>.</li>
+                            </ul>
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-[ID]', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/[CATEGORY]/[PROJECT_FOLDER]/img_1.png" alt="View 1">
+                                <div class="gallery-caption">Caption for <strong>image 1</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/[CATEGORY]/[PROJECT_FOLDER]/img_2.png" alt="View 2">
+                                <div class="gallery-caption">Caption for <strong>image 2</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/[CATEGORY]/[PROJECT_FOLDER]/img_3.png" alt="View 3">
+                                <div class="gallery-caption">Caption for <strong>image 3</strong></div>
+                            </div>
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-[ID]', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+                -->
+
+                <!------------------------------------------------- [ID] ------------------------------------------------>
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+
+
+
+
+                <!--################################ START OF STRUCTURAL PROJECT CARDS ################################-->
+
+                <!------------------------------------------------- STS ------------------------------------------------->
+                <!------------------------------------------------ START ------------------------------------------------>
+
+                <div class="project-card tab-content structural" data-modal="modal-STS" data-tags="Structural Abaqus nTop Inventor Metals">
+                    <div class="card-header-title">TOPOLOGY OPTIMIZED STEERING SUPPORT</div>
+
+                    <img src="./photos/main/thumbnails/THB_STS.png" alt="STEERING SUPPORT" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">Abaqus</span>
+                        <span class="card-tag">nTop</span>
+                        <span class="card-tag">Inventor</span>
+                        <span class="card-tag">Metals</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p>Design of a <strong>topology optimized SLM steel support</strong> using <strong>nTop</strong> and <strong>Abaqus</strong> 
+                    </div>
+                </div>
+            
+
+                <div id="modal-STS" class="modal">
+
+                    <div class="modal-content">
+
+                        <span class="modal-header"> </span>
+                        <span class="close-btn" onclick="closeModal('modal-STS')">&times;</span>
+
+                        <span class="modal-text-header">TOPOLOGY OPTIMIZED STEERING SUPPORT</span>
+
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>
+                                For Formula Student FEUP's second racecar prototype, a steering support had to be designed to <strong>integrate</strong> the <strong>steering column's gear housing</strong> and the <strong>autonomous system's actuator</strong>. The design had the following requirements:  
+                            </p>
+                            
+                            <ul>
+                                <li>Maximum displacement <span class="highlight">&le; 0.010mm</span>;</li>
+                                <li>Maximum mass <span class="highlight">&le; 1.30kg</span>, a <span class="highlight">30% reduction</span> from the machined solution.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>A design volume was first defined using the prototype's global assembly, considering the <strong>column's mounting sequence</strong>, the <strong>tools' accessibility</strong> and the <strong>SLM printer bed size</strong> - which forced the support to be divided in parts.</p>
+                            <p>The volume was imported into nTop and <strong>optimized for compliance</strong> considering <strong>two load cases</strong> - one applying the <strong>torque exerted by the autonomous system</strong> and the other using the <strong>driver loads imposed on the steering wheel</strong>.</p>
+                            <p>After the optimization, preliminary FEA analyses were performed in nTop. If the version <strong>passed requirements</strong>, the geometry was refined in CAD and a <strong>final simulation</strong> was performed <strong>in Abaqus with a detailed model</strong>.</p>
+                            
+                        
+                            <h3>Results</h3>
+                            <p>
+                                The final version achieved:
+                            </p>
+
+                            <ul>
+                                <li>A mass of <span class="highlight">0.83kg</span>, representing a <span class="highlight">55% reduction</span>;</li>
+                                <li>A maximum displacement of <span class="highlight">0.008mm</span>.</li>
+                            </ul>
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-STS', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/structural/steering_support/STS_1.png" alt="View 1">
+                                <div class="gallery-caption">Steering support <strong>before (left)</strong> and <strong>after (right)</strong> being optimized using <strong>nTop</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/steering_support/STS_2.png" alt="View 2">
+                                <div class="gallery-caption"><strong>Displacement results</strong> of optimized support using <strong>Abaqus</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/steering_support/STS_3.png" alt="View 3">
+                                <div class="gallery-caption">Assembly drawing of the support using <strong>Inventor</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/steering_support/STS_4.png" alt="View 4">
+                                <div class="gallery-caption">Gear housing and steeering actuator integrated into the steering support</div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/steering_support/STS_5.png" alt="View 5">
+                                <div class="gallery-caption">Support welded to the chassis</div>
+                            </div>                        
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-STS', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!------------------------------------------------- STS ------------------------------------------------->
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+                <!------------------------------------------------- IF -------------------------------------------------->
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <div class="project-card tab-content structural" data-modal="modal-IF" data-tags="Structural Abaqus Inventor Matlab Composites Metals">
+                    <div class="card-header-title">INFLUENCE OF INSERTS ON FLEXURAL STIFFNESS</div>
+                
+                    <img src="./photos/main/thumbnails/THB_IF.png" alt="IF THB" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">Abaqus</span>
+                        <span class="card-tag">Inventor</span>
+                        <span class="card-tag">Matlab</span>
+                        <span class="card-tag">Composites</span>
+                        <span class="card-tag">Metals</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p><strong>Experimental</strong> and <strong>numerical analysis</strong> of the <strong>influence of inserts</strong> on the <strong>flexural stiffness</strong> of <strong>composite sandwich panels</strong></p>
+                    </div>
+                </div>
+                
+                <div id="modal-IF" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-IF')">&times;</span>
+                    
+                        <span class="modal-text-header">INFLUENCE OF INSERTS ON FLEXURAL STIFFNESS</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>
+                                This study was performed in collaboration with <a href="https://formulastudent.fe.up.pt" target="_blank" rel="noopener noreferrer" class="link">Formula Student FEUP</a> and <a href="https://www.adamastor.com.pt" target="_blank" rel="noopener noreferrer" class="link">Adamastor Hypercars</a> for my bachelor's thesis. The requirements for the project were the following:
+                            </p>
+                            
+                            <ul>
+                                <li>Determine the <strong>impact</strong> of <strong>secondary TTC inserts</strong> on the <strong>flexural stiffness</strong> of sandwich panels;</li>
+                                <li>Create an <strong>analytical tool to size TTC inserts</strong>;</li> 
+                                <li>Define a <strong>numerical model</strong> for the sandwich panel's <strong>elastic behaviour</strong>, achieving a <span class="highlight">relative error &lt;20 %</span>.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>To first define the specimens construction, a <strong>quasi-isotropic layup</strong> was selected and a secondary <strong>insert was sized</strong> - using a <strong>self-developed analytical tool</strong> based on the ECSS insert handbook.</p>
+                            <p>In order to properly <strong>emulate the manufacturing of a monocoque</strong>, a <strong>three-step cure cycle</strong> was defined to produce the specimens. These were then subjected to a <strong>four-point bending test</strong> in accordance with <strong>ASTM D7250/D7250M-06</strong>.</p>
+                            <p>The numerical model used <strong>S8R elements</strong> to represent the <strong>specimens</strong>, while the <strong>supports and load applicator</strong> were defined as <strong>rigid elements</strong>. Normal contact conditions were established to accurately portrain the physical tests.</p>
+                        
+                            <h3>Results</h3>
+                            <p>Both the <strong>sizing tool and numerical models were successfully created</strong>. When comparing the simulation results, it was concluded that:</p>
+                            <ul>
+                                <li>The <strong>panel stiffness</strong> had a <strong>relative error</strong> of <span class="highlight">16-17%</span>;</li>
+                                <li>A <strong>considerable discrepancy in failure loads</strong> was caused by the <strong>shell elements' incapability</strong> of processing <strong>shear loads</strong>.</li>
+                            </ul>
+                            <p>This <strong>thesis achieved</strong> a <span class="highlight">final grade</span> of <span class="highlight">18/20</span>. <strong>Click here</strong> to see a <a href="./embedded_docs/sample_IF.pdf" target="_blank" rel="noopener noreferrer" class="link">thesis sample</a>.</p>
+
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-IF', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/structural/insert_flex/IF_1.png" alt="View 1">
+                                <div class="gallery-caption">Document <strong>sizing TTC inserts</strong> using <strong>ECSS</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/insert_flex/IF_2.png" alt="View 2">
+                                <div class="gallery-caption"><strong>FEA boundary</strong> and <strong>load conditions</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/insert_flex/IF_3.png" alt="View 3">
+                                <div class="gallery-caption"><strong>FEA results</strong> showcasing <strong>first ply failure</strong></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/insert_flex/IF_4.png" alt="View 4">
+                                <div class="gallery-caption">Four-point bending <strong>specimens failure</strong></div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/insert_flex/IF_5.png" alt="View 5">
+                                <div class="gallery-caption"><strong>Comparison of physical</strong> (S and I curves) and <strong>numerical results</strong> (SS and SI curves)</div>
+                            </div>                        
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-IF', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+                <!------------------------------------------------- IF -------------------------------------------------->
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+                <!------------------------------------------------- WB -------------------------------------------------->
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <div class="project-card tab-content structural" data-modal="modal-WB" data-tags="Structural Abaqus Python Matlab Metals">
+                    <div class="card-header-title">STATIC ANALYSIS OF A WING BOX</div>
+                
+                    <img src="./photos/main/thumbnails/THB_WB.png" alt="[ALT_TEXT]" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">Abaqus</span>
+                        <span class="card-tag">Python</span>
+                        <span class="card-tag">Matlab</span>
+                        <span class="card-tag">Metals</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p><strong>Finite element analysis</strong> of a <strong>wing box</strong> and <strong>safety margin computation</strong></p>
+                    </div>
+                </div>
+
+                <div id="modal-WB" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-WB')">&times;</span>
+                    
+                        <span class="modal-text-header">STATIC ANALYSIS OF A WING BOX</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>
+                                This project is the combined work of two modules from the MSc. in Aeronautical and Vehicular Structures at FEUP - one of these projects was developed in collaboration with a colleague. The requirements were:
+                            </p>
+
+                            <ul>
+                                <li>To develop an <strong>FEA model</strong> to analyse a <strong>wing box</strong> under </strong>aerodynamic and inertial loads</strong>;</li>
+                                <li>Analyse different <strong>failure mechanisms</strong> and compute the respective <strong>safety margins</strong>.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>To first determine the loads acting on the aircraft, both the <strong>flight envelope</strong> and the <strong>inertial loads</strong> were defined using <strong>MatLab</strong>.</p>
+                            <p>Using <strong>Abaqus</strong>, the wing box was then modelled and the loads applied in the respective centres of gravity and pressure. Using a <strong>self-developed post-processing script</strong> in <strong>python</strong>, the <strong>stress results</strong> and <strong>internal forces and moments</strong> were extracted.</p>
+                            <p>By inputing the material and geometrical properties into excel sheets, a <strong>python code was developed</strong> allowing to quickly compute the needed <strong>tension</strong>, <strong>compression</strong> and <strong>semi-diagonal tension safety margins</strong>.</p>
+                        
+                            <h3>Results</h3>
+                            <p>All the <strong>models and scripts were successfully created and implemented</strong>, thus achieving a <span class="highlight">final grades</span> of <span class="highlight">19/20</span> and <span class="highlight">15/20</span>.</p>
+                            <br>
+                            <p><strong>Click here</strong> to see a <a href="./embedded_docs/sample_WB.pdf" target="_blank" rel="noopener noreferrer" class="link">report sample</a>.</p>
+                                <!-- or here for a <a href="./embedded_docs/sample_WB.pptx" target="_blank" rel="noopener noreferrer" class="link">code sample</a>. -->
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-WB', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/structural/wing_box/WB_1.png" alt="View 1">
+                                <div class="gallery-caption">FEA's <strong>boundary conditions</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/wing_box/WB_2.png" alt="View 2">
+                                <div class="gallery-caption">FEA's <strong>von Mises stress results</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/wing_box/WB_3.png" alt="View 3">
+                                <div class="gallery-caption">Extraction of the <strong>wing box's internal moments</strong></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/wing_box/WB_4.png" alt="View 4">
+                                <div class="gallery-caption"><strong>Safety margin computation logic</strong> - excel sheets (green), <strong>python code</strong> (blue) and text files (red)</div>
+                            </div>
+                            
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/wing_box/WB_5.png" alt="View 5">
+                                <div class="gallery-caption">Final automatic <strong>safety margin report</strong></div>
+                            </div>                        
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-WB', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!------------------------------------------------- WB -------------------------------------------------->
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+                <!------------------------------------------------- BP ------------------------------------------------->
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <div class="project-card tab-content structural" data-modal="modal-BP" data-tags="Structural Abaqus MatLab Metals">
+                    <div class="card-header-title">BRAKE PEDAL FAILURE ANALYSIS</div>
+                
+                    <img src="./photos/main/thumbnails/THB_PB.png" alt="[ALT_TEXT]" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">Abaqus</span>
+                        <span class="card-tag">MatLab</span>
+                        <span class="card-tag">Metals</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p><strong>Finite element analysis</strong> of a <strong>Formula Student brake pedal assembly</strong> after reported structural issues</p>
+                    </div>
+                </div>
+
+                <div id="modal-BP" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-BP')">&times;</span>
+                    
+                        <span class="modal-text-header">BRAKE PEDAL FAILURE ANALYSIS</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>This work was performed for <a href="https://formulastudent.fe.up.pt" target="_blank" rel="noopener noreferrer" class="link">Formula Student FEUP</a> and an MSc. in Aeronautical and Vehicular Structures module at FEUP. This analysis comes as a consequence of a scrutineering complaint regarding the brake pedal's fixed base compliance, therefore this report aimed to assess:</p>
+                            <ul>
+                                <li>Assess whether the <strong>structural integrity was compromised</strong>, meaning the <strong>safety factor</strong> was <span class="highlight">below 1.1</span>;</li>
+                                <li>Perform <strong>linear elastic, nonlinear elastoplastic and a nonlinear analysis with contact</strong>.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>For an initial approach, a <strong>simplified analytical analysis</strong> was conducted to determine the <strong>load transfer between components</strong> and the <strong>maximum displacement</strong> of the fixture.</p>
+                            <p>Considering the load cases calculated in the analytical approach, these were then imposed on the fixed base and both a <strong>linear elastic</strong> and <strong>nonlinear elastoplastic</strong> analysis were performed. The full assembly model was then created, portraying not only the <strong>contact conditions between bases</strong>, but also the <strong>bolt connections</strong> through <strong>multi-point constraints</strong>.</p>
+                        
+                            <h3>Results</h3>
+                            <p>The analysis showed that:</p>
+                            <ul>
+                                <li>The <strong>fixed base would not have failed</strong>, however the assembly analysis showed that the <strong>adjustable base would have yielded</strong> but <strong>not ruptured</strong> under critical loading - thus the <span class="highlight">safety factor &lt;1.0</span>;</li>
+                                <li>The <strong>maximum displacement</strong> of the <strong>fixed base</strong> neared <span class="highlight">1.2mm</span>, validated by the full model and the analytical approach.</li>
+                            </ul>
+                            <p>This <strong>project</strong> achieved a <span class="highlight">final grade</span> of <span class="highlight">19/20</span> - <strong>click here</strong> for a <a href="./embedded_docs/sample_BP.pdf" target="_blank" rel="noopener noreferrer" class="link">report sample</a>.</p>
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-BP', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/structural/pedal_box/BP_1.png" alt="View 1">
+                                <div class="gallery-caption">Pedal box assembly</div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/pedal_box/BP_2.png" alt="View 2">
+                                <div class="gallery-caption"><strong>Free body diagram</strong> for analytical approach</div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/pedal_box/BP_3.png" alt="View 3">
+                                <div class="gallery-caption"><strong>Boundary conditions</strong> for <strong>FEA model</strong></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/pedal_box/BP_4.png" alt="View 4">
+                                <div class="gallery-caption">Plasticity <strong>temporal convergence study</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/structural/pedal_box/BP_5.png" alt="View 5">
+                                <div class="gallery-caption"><strong>Nonlinear</strong> brake pedal <strong>fixtures stress results</strong></div>
+                            </div>                        
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-BP', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!------------------------------------------------- BP -------------------------------------------------->
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+
+
+
+                <!--################################ START OF CAD DESIGN PROJECT CARDS ################################-->
+
+                <!------------------------------------------------- MO -------------------------------------------------->
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <div class="project-card tab-content cad" data-modal="modal-MO" data-tags="CAD Siemens NX Notion Composites Metals">
+                    <div class="card-header-title">FORMULA STUDENT PARAMETRIC MONOCOQUE DESIGN</div>
+                
+                    <img src="./photos/main/thumbnails/THB_MO.png" alt="[ALT_TEXT]" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">Siemens NX</span>
+                        <span class="card-tag">Notion</span>
+                        <span class="card-tag">Composites</span>
+                        <span class="card-tag">Metals</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p>Created a <strong>parametric model</strong> to ease the <strong>iteration of new monocoque geometries</strong></p>
+                    </div>
+                </div>
+
+                <div id="modal-MO" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-MO')">&times;</span>
+                    
+                        <span class="modal-text-header">FORMULA STUDENT PARAMETRIC MONOCOQUE DESIGN</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p><a href="https://formulastudent.fe.up.pt" target="_blank" rel="noopener noreferrer" class="link">Formula Student FEUP</a> heavily invested in <strong>research and development</strong> to make the transition to a <strong>monocoque chassis</strong>. <strong>I was responsible</strong> for the creation of a <strong>highly adaptable parametric CAD model</strong>. This task had the following requirements:</p>
+                            <ul>
+                                <li>The <strong>model must adapt itself</strong> to <strong>new suspension geometries</strong> and <strong>no-go zones</strong>;</li>
+                                <li>The <strong>surface design must facilitate manufacturing</strong> by ensuring a minimum fibre bend radius, mounting point edge clearance and flat surfaces priority;</li>
+                                <li>Achieve an <strong>estimated weight</strong> of <span class="highlight">&le; 30kg</span>;</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>Firstly, the <strong>critical components</strong> and the <strong>driver templates were converted into no-go zones</strong> and their layout was defined based on the <strong>weight distribution and CoG height</strong>.</p>
+                            <p>A <strong>master sketch framework driven by surface-surface intersections</strong> was adopted to create the tub's wireframe, ensuring a predictable surface behaviour. <strong>Multi-section lofts and boundary patches</strong> were then used to <strong>create the nose, cockpit and rear surfaces</strong>.</p>
+                            <p>Since <strong>each section is designed independently to prevent cyclic errors</strong>, and are then linked to form the main component. <strong>Surface and edge blends</strong> were then applied based on the <strong>minimum radius of the inner shell</strong> and the <strong>core's maximum bending</strong>.</p>
+                            <p>Finally, <strong>parametric tests and surface analysis</strong> were performed to <strong>evaluate model flexibility and surface continuity</strong>.</p>
+
+                            <h3>Results</h3>
+                            <p>The preliminary design presented an <strong>estimated mass</strong> of <span class="highlight">24kg</span>. <strong>All other requirements were implemented</strong> throughout the model.</p>
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-MO', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/cad/parametric_mono/MO_1.png" alt="View 1">
+                                <div class="gallery-caption">Methodology adopted to model the <strong>monocoque's wireframe and surfaces</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/parametric_mono/MO_2.png" alt="View 2">
+                                <div class="gallery-caption">Example section showcasing the <strong>nose section's feature tree organization</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/parametric_mono/MO_3.png" alt="View 3">
+                                <div class="gallery-caption"><strong>Zebra surface analysis</strong> to evaluate continuity</div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <video class="gallery-image" controls autoplay loop muted playsinline> <source src="./photos/projects/cad/parametric_mono/MO_4.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="gallery-caption">Video example of a <strong>parametric test</strong></div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/parametric_mono/MO_5.png" alt="View 6">
+                                <div class="gallery-caption"><strong>Final preliminary monocoque design</strong></div>
+                            </div>                        
+
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-MO', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!------------------------------------------------- MO -------------------------------------------------->
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+                <!------------------------------------------------- SM -------------------------------------------------->
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <div class="project-card tab-content cad" data-modal="modal-SM" data-tags="CAD Inventor Composites">
+                    <div class="card-header-title">MOULD FOR CARBON FIBRE SEAT</div>
+                    
+                    <img src="./photos/main/thumbnails/THB_SM.png" alt="[ALT_TEXT]" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                    
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                    
+                    <div class="card-tags">
+                        <span class="card-tag">Inventor</span>
+                        <span class="card-tag">Composites</span>
+                    </div>
+                    
+                    <div class="project-card-text">
+                            <p><strong>Design for manufacturing</strong> of a <strong>mould</strong> for <strong>carbon fibre seat</strong></p>
+                    </div>
+                </div>
+
+                <div id="modal-SM" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-SM')">&times;</span>
+                    
+                        <span class="modal-text-header">MOULD FOR CARBON FIBRE SEAT</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>
+                                As a member of <a href="https://formulastudent.fe.up.pt" target="_blank" rel="noopener noreferrer" class="link">Formula Student FEUP</a>, I was designed a mould for the carbon fibre seat with the following requirements:
+                            </p>
+
+                            <ul>
+                                <li>Ensure <strong>ease of manufacturing</strong> and <strong>stock efficiency</strong>;</li>
+                                <li>Maintain a minimum <span class="highlight">2° draft angle</span> across all vertical surfaces;</li>
+                                <li>Achieve a suitable surface for a <strong>vacuum-assisted hand lay-up</strong> process.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>To develop the mould, the <strong>lay-up surface was first selected</strong> and the <strong>seat design</strong> was then <strong>adapted to prevent mechanical lock</strong> when releasing the part.</p>
+                            <p>For the mould modelling, an <strong>offset and trim approach was used</strong> to ensure a streamlined machining process. The final design was then <strong>analysed and divided based on the foam stock available</strong>, ensuring minimal waste.</p>
+                            <p>The <strong>stock mould blocks were positioned</strong> and then <strong>glued before being machined by a 3-axis CNC</strong>. Post-machining the <strong>mould surface was sealed, micro-filled and sanded up to 800 grit</strong>. The seat was then produced using <strong>hand layup</strong>.</p>
+                        
+                            <h3>Results</h3>
+                            <p>The finalized mould allowed the composite seat to be produced <span class="highlight">without any demoulding damage or structural flaws</span>.</p>
+                        </div>
+            
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-SM', -1)">&#10094;</button>
+                        
+                            <div class="gallery-item active">
+                                <img class="gallery-image" src="./photos/projects/cad/seat_mould/SM_1.png" alt="View 1">
+                                <div class="gallery-caption">Initial seat <strong>trim lines</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/seat_mould/SM_2.png" alt="View 2">
+                                <div class="gallery-caption"><strong>Intersection of surfaces</strong> to create <strong>trim edges</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/seat_mould/SM_3.png" alt="View 3">
+                                <div class="gallery-caption"><strong>Final layup surface</strong> design</div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/seat_mould/SM_4.png" alt="View 4">
+                                <div class="gallery-caption"><strong>Complete CAD model</strong> of the mould</div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/seat_mould/SM_5.png" alt="View 5">
+                                <div class="gallery-caption">Mould being coated</div>
+                            </div>
+
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/cad/seat_mould/SM_6.png" alt="View 6">
+                                <div class="gallery-caption"><strong>Finalized composite seat</strong></div>
+                            </div>                        
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-SM', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!------------------------------------------------- SM ------------------------------------------------->
+                <!------------------------------------------------- END ------------------------------------------------->
+
+
+
+
+
+
+                <!--################################ START OF CAD DESIGN PROJECT CARDS ################################-->
+                
+                <!------------------------------------------------- FSL ------------------------------------------------>
+                <!------------------------------------------------ START ------------------------------------------------>
+                    
+                <div class="project-card tab-content management" data-modal="modal-FSL" data-tags="Management JavaScript Notion">
+                    <div class="card-header-title">HEAD OF CHASSIS DEPARTMENT</div>
+                
+                    <img src="./photos/main/thumbnails/THB_FSL.png" alt="[ALT_TEXT]" class="project-card-image" onerror="this.style.backgroundColor='#990000'">
+                
+                    <div class="project-card-overlay"><span>PRESS FOR DETAILS</span></div>
+                
+                    <div class="card-tags">
+                        <span class="card-tag">JavaScript</span>
+                        <span class="card-tag">Notion</span>
+                    </div>
+                
+                    <div class="project-card-text">
+                        <p>Responsible for leading the <strong>primary structure</strong>, <strong>packaging</strong> and <strong>driver interface design and manufacturing</strong></p>
+                    </div>
+                </div>
+
+                <div id="modal-FSL" class="modal">
+                
+                    <div class="modal-content">
+                    
+                        <span class="modal-header"></span>
+                        <span class="close-btn" onclick="closeModal('modal-FSL')">&times;</span>
+                    
+                        <span class="modal-text-header">HEAD OF CHASSIS DEPARTMENT</span>
+                    
+                        <div class="modal-text-content">
+                            <h3>Objectives & Requirements</h3>
+                            <p>
+                                As Head of the chassis department at <a href="https://formulastudent.fe.up.pt" target="_blank" rel="noopener noreferrer" class="link">Formula Student FEUP</a>, I had the following requirements:
+                            </p>
+
+                            <ul>
+                                <li>Manage <span class="highlight">3 subsystems</span>, those being <strong>primary structure (PS)</strong>, <strong>packaging (PA)</strong> and <strong>driver interface (DI)</strong>;</li>
+                                <li><strong>Oversee and coordinate</strong> <span class="highlight">8 team members</span>;</li>
+                                <li>Conclude the <strong>manufacturing</strong> of the <strong>second prototype</strong>, lead the <strong>design of the third spaceframe</strong> and initiate <strong>R&D of the team's first monocoque</strong>.</li>
+                            </ul>
+                        
+                            <h3>Methodology</h3>
+                            <p>I became department lead mid spaceframe production, <strong>facing delays in the critical-path</strong> due to a lack of budget. Together with the board, we <strong>altered the sponsor manufacturing schedules and simplified components</strong> to reduce the number of processes needed. Afterwards, I <strong>coordinated the integration of the remaining subsystems</strong> into the prototype.</p>
+                            <p>At the start of the new season, I <strong>centralized the department's operations on Notion</strong> and <strong>set clear requirements</strong> for each subsystem. To increase efficiency through the design phase, I <strong>drove the automation of repetitive CAD and analysis tasks</strong> through custom scripts, templates, and applications.</p>
+                            <p>To ground new members in <strong>design for manufacturing</strong>, they were tasked with <strong>generating cost quotes</strong> for their designs and to <strong>participate in specimen production</strong>. This <strong>minimized downstream manufacturing bottlenecks</strong> and <strong>accelerated the production schedule</strong>.</p>
+
+                            <h3>Results</h3>
+                            <p>This experience strengthened my <span class="highlight">project coordination under tight resource constraints</span> and enabled the team to <strong>streamline design workflows</strong>, <span class="highlight">deliver the spaceframe design on schedule</span> and establish a <strong>solid R&D foundation for future development</strong>.</p>
+
+                            <p><strong>Click here to view</strong> either a <a href="./embedded_docs/sample_CHL.ps.pdf" target="_blank" rel="noopener noreferrer" class="link">PS</a>, a <a href="./embedded_docs/sample_CHL.pa.pdf" target="_blank" rel="noopener noreferrer" class="link">PA</a> or a <a href="./embedded_docs/sample_CHL.di.pdf" target="_blank" rel="noopener noreferrer" class="link">DI</a> documentation sample.</p>
+                        </div>
+                    
+                        <div class="modal-gallery">
+                            <button class="gallery-nav prev-btn" onclick="changeModalImage('modal-FSL', -1)">&#10094;</button>
+
+                            <div class="gallery-item active">
+                                <video class="gallery-image" controls autoplay loop muted playsinline> <source src="./photos/projects/management/fsfeup_chassislead/FSL_1.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div class="gallery-caption"><strong>Promotional video</strong> of the chassis department</div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/management/fsfeup_chassislead/FSL_2.png" alt="View 2">
+                                <div class="gallery-caption"><strong>Centralized hub</strong> for department operations</div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/management/fsfeup_chassislead/FSL_3.png" alt="View 2">
+                                <div class="gallery-caption">Third cycle first year <strong>developmenttimeline</strong></div>
+                            </div>
+                        
+                            <div class="gallery-item">
+                                <img class="gallery-image" src="./photos/projects/management/fsfeup_chassislead/FSL_4.png" alt="View 3">
+                                <div class="gallery-caption"><strong>Department banner</strong> showcasing different designs</div>
+                            </div>
+                        
+                            <button class="gallery-nav next-btn" onclick="changeModalImage('modal-FSL', 1)">&#10095;</button>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!------------------------------------------------- FSL ------------------------------------------------>
+                <!------------------------------------------------- END ------------------------------------------------->            
+
+            </section>
+        </div>
+
+        <!-- Awards Section -->
+        <section id="timeline-section" class="timeline-split-section">
+        
+            <!-- Dynamic Background Image Layer -->
+            <div class="timeline-bg-wrapper">
+                <div id="timeline-bg" class="timeline-bg-display"></div>
+                <div class="timeline-gradient-overlay"></div>
+            </div>
+
+            <div class="timeline-content">
+                <h2 class="section-title">ACHIEVEMENTS</h2>
+
+                <div class="timeline-content-left">
+
+                    <div class="interactive-timeline">
+
+                        <!-- MSC START -->
+                        <div class="timeline-item simple-mark">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Oct 2026 - present</span>
+                                    <h3 class="timeline-title">MSc Mechanical Engineering</h3>
+                                    <span class="timeline-subtitle">Technical University of Munich</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FS 26 -->
+                        <div class="timeline-item expandable" 
+                            data-bg="./photos/awards/background/FS.26.png" 
+                            onclick="selectTimelineCard(this)">
+
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Jul 2026</span>
+                                    <h3 class="timeline-title">Formula Student Junior Class</h3>
+                                    <span class="timeline-badge award">8 podiums finishes</span>
+                                    <span class="timeline-subtitle">🇨🇭 Switzerland | 🇵🇹 Portugal</span>
+                                </div>
+                                <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
+                            </div>
+
+                            <div class="timeline-details">
+                                <p>Contributed and defended the engineering design structural and driver interface categpry and costand manufacturing events.</p>
+                                
+                                <div class="timeline-media">
+                                    <img src="./photos/awards/info/FS.26_1.jpg" alt="Event Photo">
+                                </div>
+
+                                <div class="award-callout">
+                                    <strong>1st place in all events presented</strong>, winning both competitions.
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <!-- BSc THE -->
+                        <div class="timeline-item simple-mark">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Sep 2022 - Jul 2026</span>
+                                    <h3 class="timeline-title">Adamastor Supercars - BSc Thesis</h3>
+                                    <span class="timeline-badge award">18/20 grade</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--  FS 25 -->
+                        <div class="timeline-item expandable" 
+                            data-bg="./photos/awards/background/FS.25.png" 
+                            onclick="selectTimelineCard(this)">
+
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Jul - Aug 2025</span>
+                                    <h3 class="timeline-title">Formula Student Class</h3>
+                                    <span class="timeline-badge award">6 podiums finishes</span>                                    
+                                    <span class="timeline-subtitle">🇳🇱 Netherlands | 🇵🇹 Portugal | 🇩🇪 Germany</span>
+                                </div>
+                                <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
+                            </div>
+
+                            <div class="timeline-details">
+                                <p>Contributed and defended the engineering design structural and driver interface category, mechanical scrutineering, cost and manufacturing and business plan events.</p>
+                                
+                                <div class="timeline-media">
+                                    <img src="./photos/awards/info/FS.25_1.png" alt="Event Photo">
+                                </div>
+
+                                <div class="award-callout">
+                                    2x <strong>1st places</strong> in business plan;<br>1x <strong>2nd place</strong> in design;<br>3x <strong>3rd place</strong>, marking the <strong>first Portuguese EV podium in Germany</strong>.
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <!--  CS MG -->
+                        <div class="timeline-item expandable" 
+                            data-bg="./photos/awards/background/CS.mg25.png" 
+                            onclick="selectTimelineCard(this)">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Fev 2025</span>
+                                    <h3 class="timeline-title">Mec Games - Engineering Competition</h3>
+                                    <span class="timeline-badge award">1st place</span>                                    
+                                </div>
+                                <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
+                            </div>
+                            <div class="timeline-details">
+                                <p>The competition consisted of a case study - developing a mechanism for quick pouch cell replacement - and a prototype challenge - requiring the production of an elevator mechanism.</p>
+                                
+                                <div class="timeline-media">
+                                    <img src="./photos/awards/info/CS.mg_1.jpg" alt="Event Photo">
+                                </div>
+                            </div>
+                        </div> 
+
+                        <!--  FS 24 -->
+                        <div class="timeline-item expandable" 
+                            data-bg="./photos/awards/background/FS.24.png" 
+                            onclick="selectTimelineCard(this)">
+
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Jul - Aug 2024</span>
+                                    <h3 class="timeline-title">Formula Student Junior Class</h3>
+                                    <span class="timeline-badge award">8 podium finishes</span>                                     
+                                    <span class="timeline-subtitle">🇨🇭 Switzerland | 🇵🇹 Portugal</span>
+                                </div>
+                                <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
+                            </div>
+
+                            <div class="timeline-details">
+                                <p>Contributed and defended the engineering design structural and driver interface category, cost and manufacturing and business plan events.</p>
+                                
+                                <div class="timeline-media">
+                                    <img src="./photos/awards/info/FS.24_1.jpg" alt="Event Photo">
+                                </div>
+
+                                <div class="award-callout">
+                                    <strong>1st place in all events</strong>, winning both competitions.
+                                </div>                                 
+                            </div>
+                            
+                        </div>                    
+                        
+                        <!-- CS YA -->
+                        <div class="timeline-item expandable" 
+                            data-bg="./photos/awards/background/CS.ya24.png" 
+                            onclick="selectTimelineCard(this)">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Apr 2024</span>
+                                    <h3 class="timeline-title">Case Study - Yazaki</h3>
+                                    <span class="timeline-badge award">1st place</span>                                    
+                                </div>
+                                <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
+                            </div>
+                            <div class="timeline-details">
+                                <p>The challenge involved designing a testing jig to perform fatigue tests on an automotive electrical connector.</p>
+                                
+                                <div class="timeline-media">
+                                    <img src="./photos/awards/info/CS.ya_1.jpg" alt="Event Photo">
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <!-- BSC START -->
+                        <div class="timeline-item simple-mark">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-header">
+                                <div class="timeline-title-group">
+                                    <span class="timeline-date">Sep 2022 - Jul 2026</span>
+                                    <h3 class="timeline-title">BSc Mechanical Engineering</h3>
+                                    <span class="timeline-subtitle">University of Porto</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills-section" class="skills-section">
+            
+            <h2 class="section-title">SKILLS</h2>
+            <p class="section-description">Press highlighted competences to view certification.</p>
+            
+            <div class="skills-container">
+                
+                <div class="skills-list">
+                    
+                    <!-- Languages -->
+                    <div class="skill-row">
+                        <span class="skill-label">Languages</span>
+                        <div class="skill-values">
+                            <!-- Example with certificate link -->
+                            <a href="./embedded_docs/cert_EN.PDF" target="_blank" class="skill-link">
+                                English <span class="proficiency">C2</span>
+                            </a> | 
+                            <!-- Example with certificate link -->
+                            <a href="./embedded_docs/cert_DE.PDF" target="_blank" class="skill-link">
+                                German <span class="proficiency">B1</span>
+                            </a> | 
+                            <span>Portuguese <span class="proficiency">native</span></span>
+                        </div>
+                    </div>
+
+                    <!-- CAD -->
+                    <div class="skill-row">
+                        <span class="skill-label">CAD Software</span>
+                        <div class="skill-values">
+                            <span>Siemens NX</span> | 
+                            <span>Dassault Solidworks</span> | 
+                            <span>Dassault Catia</span> | 
+                            <span>Autodesk Inventor</span> |  
+                            <span>Autodesk Fusion</span>
+                        </div>
+                    </div>
+
+                    <!-- FEM -->
+                    <div class="skill-row">
+                        <span class="skill-label">FEA Software</span>
+                        <div class="skill-values">
+                            <span>Abaqus</span> | 
+                            <span>Ntopology</span>
+                        </div>
+                    </div>
+
+                    <!-- Programming -->
+                    <div class="skill-row">
+                        <span class="skill-label">Coding Language</span>
+                        <div class="skill-values">
+                            <span>Matlab</span> | 
+                            <span>Python</span> | 
+                            <span>Javascript</span>
+                        </div>
+                    </div>
+
+                    <!-- Management -->
+                    <div class="skill-row">
+                        <span class="skill-label">Management Software</span>
+                        <div class="skill-values">
+                            <span>Notion</span> | 
+                            <span>Gantt</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>    
+
+    <!-- Bottom Bar Navigation -->
+    <footer>
+        <div class="footer-left">
+            <span>© 2026 Miguel Monteiro</span>
+        </div>
+        
+        <div class="footer-right">
+            <a href="#intro">Back to top <i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div id="notification-toast" class="notification">Copied to clipboard!</div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
