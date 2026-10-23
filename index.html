@@ -15,7 +15,7 @@
             --text-muted: #767777;
             --primary: #5177a9;
             --primary-light: #6d87ae;
-            --accent-red: #ea5963;
+            --accent-red: #D62828;
         }
 
         @font-face {
@@ -128,10 +128,10 @@
 
         /* Dropdown Window */
         .dropdown-menu {
-            display: none; /* Hidden by default */
+            display: none;
             position: absolute;
             top: 68px;
-            right: calc(100px + 150px + 34px*2);
+            right: 0;
             background-color: var(--bg-dark);
             border: 2px solid var(--primary);
             border-radius: 8px;
@@ -148,6 +148,7 @@
         .dropdown-menu a {
             color: var(--text-muted);
             padding: 12px 16px;
+            margin-left: 0;
             text-decoration: none;
             font-size: 0.95rem;
             font-weight: 500;
@@ -160,7 +161,13 @@
         .dropdown-menu a:hover {
             background-color: var(--primary);
             color: var(--text-main);
-        }        
+        }
+        
+        nav div .dropdown-menu {
+            right: 0;
+            top: 100%;
+            margin-top: 25px;
+        }
 
         /* Introduction Section */
         .introduction {
@@ -238,7 +245,6 @@
             border-left: 1.5px solid rgba(28, 30, 32, 0.8);  
             border-right: 1.5px solid rgba(28, 30, 32, 0.8);
             padding: 60px 100px;
-
         }
 
         /* Tabs Container */
@@ -356,8 +362,8 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 80px;
             width: 100%;
-            margin: 60px 0 60px;
-            min-height: 400px;
+            margin: 60px 0 124px;
+            min-height: 192px;
         }
 
         .project-card {
@@ -369,6 +375,8 @@
             position: relative;
             cursor: pointer;
             animation: fadeIn 0.4s ease forwards;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+
         }
 
         @keyframes fadeIn {
@@ -406,9 +414,8 @@
             height: 100%;
             border-radius: 8px;
             font-size: 1.1rem;
-            border: 4px solid var(--primary);
+            border: 2px solid var(--primary);
             color: var(--text-main);
-            background-color: rgba(81, 119, 169, 0.38);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -420,6 +427,16 @@
         
         .project-card:hover .project-card-overlay {
             opacity: 1;
+            background: linear-gradient(
+                120deg, 
+                rgba(28, 30, 32, 0.9) 0%, 
+                rgba(81, 119, 169, 0.35) 25%, 
+                rgba(109, 135, 174, 0.6) 50%, 
+                rgba(81, 119, 169, 0.35) 75%, 
+                rgba(28, 30, 32, 0.9) 100%
+            );
+            background-size: 200% 200%;
+            animation: flowFlare 9s ease infinite;
         }
 
         .project-card-text {
@@ -698,15 +715,6 @@
             transform: translateY(0);
         }
 
-        @media (max-width: 900px) {
-            .projects-list {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-            .content-wrapper > * {
-                padding: 0 20px;
-            }
-        }
-
 
 
         /* Awards section */
@@ -719,10 +727,10 @@
             background: linear-gradient(
                 to right,
                 rgba(28, 30, 32, 1.00) 0%,
-                rgba(28, 30, 32, 1.00) 30%,
-                rgba(28, 30, 32, 0.95) 45%,
-                rgba(28, 30, 32, 0.75) 60%,                
-                rgba(28, 30, 32, 0.00) 75%
+                rgba(28, 30, 32, 1.00) 15%,
+                rgba(28, 30, 32, 0.95) 30%,
+                rgba(28, 30, 32, 0.75) 50%,                
+                rgba(28, 30, 32, 0.00) 60%
             );   
             padding-left: 100px; 
         }
@@ -757,7 +765,7 @@
             z-index: 3;
             width: 100%;
             padding-top: 60px;
-            padding-bottom: 60px;
+            padding-bottom: 128px;
         }
 
         .timeline-bg-display.fade-out {
@@ -770,10 +778,10 @@
             background: linear-gradient(
                 to right,
                 rgba(28, 30, 32, 1.00) 0%,
-                rgba(28, 30, 32, 1.00) 30%,
-                rgba(28, 30, 32, 0.95) 45%,
-                rgba(28, 30, 32, 0.75) 60%,                
-                rgba(28, 30, 32, 0.00) 75%
+                rgba(28, 30, 32, 1.00) 10%,
+                rgba(28, 30, 32, 0.95) 20%,
+                rgba(28, 30, 32, 0.75) 35%,                
+                rgba(28, 30, 32, 0.00) 50%
             );
             z-index: 2;
             pointer-events: none;
@@ -820,33 +828,68 @@
         /* Badges & Highlights */
         .timeline-badge {
             align-self: flex-start;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            padding: 2px 8px;
+            padding: 3px 10px;
             border-radius: 4px;
             margin-bottom: 4px;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
+        /* Badge for Podiums */
         .timeline-badge.award {
-            background: rgba(18, 18, 18, 0.2);
-            color: #5177a9;
-            border: 1px solid #5177a9;
+            background: rgba(81, 119, 169, 0.15);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 8px rgba(81, 119, 169, 0.2);
         }
 
+        /* Animated Callout Box with Moving Flare */
         .award-callout {
-            margin-top: 8px;
-            padding: 8px 12px;
-            background: radial-gradient(circle at 0% 0%, #5177a9 0%, #5177a9 40%, #6d87ae 100%);;
-            border-radius: 4px;
+            position: relative;
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid var(--primary);
             font-weight: 500;
-            color: var(--bg-dark);
+            color: var(--text-main);
             text-align: justify;
+            overflow: hidden;
+            z-index: 1;
+            
+            /* Flowing gradient animation background */
+            background: linear-gradient(
+                120deg, 
+                rgba(28, 30, 32, 0.9) 0%, 
+                rgba(81, 119, 169, 0.35) 25%, 
+                rgba(109, 135, 174, 0.6) 50%, 
+                rgba(81, 119, 169, 0.35) 75%, 
+                rgba(28, 30, 32, 0.9) 100%
+            );
+            background-size: 200% 200%;
+            animation: flowFlare 9s ease infinite;
         }
 
-        .award-callout strong{
+        .award-callout strong {
             font-weight: 700;
+            color: var(--text-main);
         }
+
+        /* Shimmer overlay animation */
+        @keyframes flowFlare {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
 
         .interactive-timeline {
             position: relative;
@@ -873,7 +916,7 @@
             border-width: 4px;
             border-left-style: solid;
             border-color: var(--text-muted);
-            background-color: rgba(18, 18, 18, 0.4);
+            background-color: rgba(18, 18, 18, 0.6);
         }
 
         .timeline-item.expandable:hover {
@@ -882,7 +925,7 @@
 
         .timeline-item.expandable.active {
             border-color: var(--primary);
-            background-color: rgba(18, 18, 18, 0.8);
+            background-color: rgba(18, 18, 18, 0.9);
         }
 
         /* Simple Mark Styling (No Card hover effect / No pointer cursor) */
@@ -974,27 +1017,17 @@
             font-weight: 300;
         }
 
-        @media (max-width: 1024px) {
-            .timeline-content-left {
-                width: 100%;
-                padding: 40px 20px;
-            }
-            .timeline-gradient-overlay {
-                background: rgba(14, 15, 16, 0.92);
-            }
-        }
-
         /* Skills Section */
         .skills-section {
             position: relative;
             width: 100%;
-            padding: 32px 100px;
-            padding-bottom: 60px;
+            padding: 60px 100px;
             z-index: 2;
         }
 
         .skills-container {
             max-width: 100%;
+            padding-bottom: 60px;
         }
 
         .skills-list {
@@ -1049,16 +1082,198 @@
             opacity: 1;
             transform: translate(1px, -1px);
         }
-
-        /* Responsive collapse for small screens */
-        @media (max-width: 768px) {
-            .skill-row {
-                grid-template-columns: 1fr;
-                gap: 6px;
-                padding: 16px 0;
-            }
+        
+        /* Recommendations Section */
+        .recommendations-section {
+            position: relative;
+            width: 100%;
+            padding: 60px 100px;
+            z-index: 2;
+            background-color: var(--bg-card);
+        }
+        
+        .recommendations-wrapper {
+            display: grid;
+            grid-template-columns: 1.5fr 0.8fr;
+            gap: 50px;
+            align-items: center; /* Centers both sides vertically */
+            border-top: 1px solid var(--text-muted);
+            max-width: 1450px; 
+            margin: 32px auto 0;
+            padding: 32px 0 60px;
+            min-height: 600px;
         }
 
+        /* Left Side Quote Display Container */
+        .quote-card {
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 48px 56px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            background: radial-gradient(circle at 0% 0%, #5177a9 0%, #5177a9 40%, #6d87ae 100%);
+            align-self: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Quote Text Wrapper to inline quotation marks */
+        .quote-text-container {
+            position: relative;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.5;
+            font-style: italic;
+            transition: opacity 0.2s ease;
+            width: 100%;
+            text-align: justify;
+        }
+
+        /* Dynamic Inline Quotation Marks that flow with text size */
+        .quote-mark {
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: var(--bg-dark);
+            position: absolute;
+            line-height: 1;
+            user-select: none;
+            font-style: normal;
+        }
+
+        .quote-mark.open {
+            top: -2.5rem;
+            left: -25px;
+        }
+
+        .quote-mark.close {
+            bottom: -4rem;
+            right: -25px;
+        }
+
+        /* Speaker Cards Column */
+        .recommendations-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center-align speaker cards in available height */
+        }
+
+        /* Right Side Menu Item Layout & Expanded Hover State */
+        .rec-menu-item {
+            background-color: var(--bg-card);
+            border: 1.5px solid var(--text-muted);
+            border-radius: 8px;
+            padding: 16px 20px;
+            cursor: default;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+            will-change: transform, background-color;
+            transform-origin: center right;
+            transform: scale(0.90);
+        }
+
+        .rec-menu-item:hover,
+        .rec-menu-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            background: radial-gradient(circle at 0% 0%, #5177a9 0%, #5177a9 40%, #6d87ae 100%);
+            transform: scale(1);
+            transform-origin: center right;
+        }
+
+        .rec-menu-item:hover h5,
+        .rec-menu-item.active h5 {
+            color: var(--text-main);
+            font-size: 1.75rem;
+        }
+
+        .rec-menu-item:hover p,
+        .rec-menu-item.active p {
+            color: var(--bg-dark);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .rec-menu-item-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rec-menu-item h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2px;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .rec-menu-item p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        font-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Actions inside the active/hovered right card */
+        .rec-card-actions {
+            opacity: 0;
+            visibility: hidden;
+            max-height: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 0;
+            overflow: hidden;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0.3s step-end;
+        }
+
+        /* Reveal LinkedIn and Full Letter buttons smoothly with opacity & height */
+        .rec-menu-item:hover .rec-card-actions,
+        .rec-menu-item.active .rec-card-actions {
+            opacity: 1;
+            visibility: visible;
+            max-height: 50px;
+            margin-top: 4px;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0s step-start;
+        }
+
+        .rec-action-btn {
+            background-color: var(--bg-card);
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                        color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .rec-action-btn:hover {
+            background-color: var(--bg-card);
+            color: var(--text-main);            
+        }
+
+        
+        
         /* Footer Section */
         footer {
             width: 100vw;
@@ -1100,8 +1315,372 @@
 
         .footer-right a:hover {
             color: var(--text-main);
-        }      
+        }
         
+
+
+
+        /* ADAPTATIONS FOR PHONE */
+        @media (max-width: 900px) {
+
+            /* Lock horizontal overflow strictly for mobile screens */
+            html, body {
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            /* Global Typography Scale for Mobile */
+            body {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem !important;
+                margin: 32px 0 8px 0 !important;
+            }
+
+            .section-description {
+                font-size: 1rem !important;
+            }
+
+            /* 0. Eliminate PC Center-Column Margins & Shadows */
+            #main-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+            }
+
+            .content-wrapper,
+            .skills-section,
+            .recommendations-section {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 40px 16px !important;
+                border-left: none !important;
+                border-right: none !important;
+                box-sizing: border-box !important;
+            }
+
+            /* 1. Header & Nav Alignment */
+            header {
+                width: 100% !important;
+                padding: 0 16px !important;
+                height: 56px !important;
+            }
+
+            .logo {
+                margin-left: 0 !important;
+            }
+
+            .logo-content {
+                display: none !important;
+            }
+
+            nav {
+                margin-right: 0 !important;
+            }
+
+            nav a {
+                margin-left: 14px !important;
+                font-size: 1.1rem !important;
+            }
+
+            nav a strong {
+                display: none !important;
+            }
+
+            /* ISSUE 2 FIX: Profile Photo Framing */
+            .introduction {
+                flex-direction: column !important;
+                height: auto !important;
+                min-height: unset !important;
+                background-position: -140px 120px !important;
+                background-size: 150% auto !important;
+                background-repeat: no-repeat !important;
+                padding-top: 395px !important; /* Gives room for subject's portrait */
+                background-color: var(--bg-dark) !important;
+            }
+
+            .introduction-overlay {
+                position: relative !important;
+                background: var(--bg-card) !important;
+                padding: 32px 20px 64px !important;
+                margin-top: 0 !important;
+            }
+
+            .introduction-content h1 {
+                font-size: 3rem !important;
+            }
+
+            .introduction-content h2 {
+                font-size: 2rem !important;
+                margin: 6px 0 14px 0 !important;
+            }
+
+            .introduction-content p {
+                font-size: 0.95rem !important;
+                max-width: 100% !important;
+            }
+
+            /* Projects Section Grid & Category Tabs */
+            .portfolio-tabs {
+                flex-direction: column !important;
+                height: auto !important;
+                gap: 12px !important;
+            }
+
+            .tab-separator {
+                display: none !important;
+            }
+
+            .projects-list {
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
+                width: 100% !important;
+            }
+
+            /* ISSUE 1 FIX: Locked Fixed Modal Bar & Visible Title/X */
+            .modal-content {
+                flex-direction: column !important;
+                width: 94vw !important;
+                max-height: 85vh !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                position: relative !important;
+                border-radius: 12px !important;
+            }
+
+            .modal-header {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 52px !important;
+                z-index: 100 !important; /* Keeps bar above body */
+                border-radius: 12px 12px 0 0 !important;
+                background-color: var(--primary) !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+
+            .modal-text-header {
+                font-size: 0.95rem !important;
+                top: 16px !important;
+                left: 16px !important;
+                color: var(--bg-dark) !important;
+                max-width: 75% !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                z-index: 101 !important;
+            }
+
+            .close-btn {
+                position: absolute !important;
+                top: 8px !important;
+                right: 16px !important;
+                font-size: 1.8rem !important;
+                color: var(--bg-dark) !important;
+                z-index: 102 !important;
+            }
+
+            .modal-text-content {
+                flex: 1 !important;
+                width: 100% !important;
+                margin-top: 52px !important; /* Prevents text from slipping under fixed header */
+                padding: 20px 16px 24px !important;
+                font-size: 0.9rem !important;
+                overflow-y: auto !important; /* Enables independent vertical scroll */
+            }
+
+            .modal-gallery {
+                flex: none !important;
+                width: 100% !important;
+                height: 240px !important;
+                transform: none !important;
+                margin: 16px 0 24px 0 !important;
+                position: relative !important;
+            }
+
+            .gallery-caption {
+                padding-top: 12px !important;
+                margin-bottom: 12px !important;
+                font-size: 0.85rem !important;
+            }
+
+            /* ISSUE 3 FIX: Timeline Circular Nodes Alignment */
+            .timeline-split-section {
+                width: 100% !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+                background: var(--bg-card) !important;
+                box-sizing: border-box !important;
+            }
+
+            .timeline-bg-wrapper {
+                display: none !important;
+            }
+
+            .timeline-content-left {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .interactive-timeline {
+                padding-left: 20px !important;
+                border-left: 2px solid var(--text-muted) !important;
+            }
+
+            .timeline-item.expandable,
+            .timeline-item.simple-mark {
+                width: 100% !important;
+                max-width: calc(100vw - 64px) !important;
+                box-sizing: border-box !important;
+                transform: none !important;
+                padding: 12px 14px !important;
+            }
+
+            /* Centers circle node over vertical line */
+            .timeline-marker {
+                left: -27px !important;
+                top: 18px !important;
+            }
+
+            .timeline-details {
+                width: 100% !important;
+                box-sizing: border-box !important;
+            }
+
+            .timeline-media {
+                width: 100% !important;
+                height: auto !important;
+                max-height: 200px !important;
+            }
+
+            .timeline-media img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+            }
+
+            .award-callout {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                font-size: 0.85rem !important;
+                padding: 8px 10px !important;
+            }
+
+            /* Skills Section & Filter Pills */
+            .search-controls-container {
+                margin: 16px 0 !important;
+                padding: 12px 8px !important;
+            }
+
+            .filter-group {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 8px !important;
+            }
+
+            .filter-label {
+                min-width: unset !important;
+                font-size: 0.95rem !important;
+            }
+
+            .tag-pills {
+                gap: 6px !important;
+            }
+
+            .tag-pill {
+                font-size: 0.85rem !important;
+                padding: 2px 8px !important;
+            }
+
+            .skill-row {
+                grid-template-columns: 1fr !important;
+                gap: 2px !important;
+                padding: 8px 0 !important;
+            }
+
+            .skill-label {
+                font-size: 0.95rem !important;
+            }
+
+            .skill-values, .skill-link {
+                font-size: 0.9rem !important;
+            }
+
+            /* Recommendations Section */
+            .recommendations-wrapper {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+                min-height: auto !important;
+            }
+
+            .quote-card {
+                padding: 24px 20px !important;
+            }
+
+            .quote-text-container {
+                font-size: 1rem !important;
+                line-height: 1.4 !important;
+            }
+
+            .quote-mark.open {
+                top: -10px !important;
+                left: -6px !important;
+                font-size: 1.8rem !important;
+            }
+
+            .quote-mark.close {
+                bottom: -18px !important;
+                right: -6px !important;
+                font-size: 1.8rem !important;
+            }
+
+            .rec-menu-item {
+                padding: 12px 16px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .rec-menu-item h5,
+            .rec-menu-item:hover h5,
+            .rec-menu-item.active h5 {
+                font-size: 1.1rem !important;
+            }
+
+            .rec-menu-item p,
+            .rec-menu-item:hover p,
+            .rec-menu-item.active p {
+                font-size: 0.85rem !important;
+            }
+
+            .rec-action-btn {
+                font-size: 0.85rem !important;
+                padding: 4px 8px !important;
+            }
+
+            /* Footer Full Width */
+            footer {
+                width: 100% !important;
+                flex-direction: column !important;
+                gap: 12px !important;
+                height: auto !important;
+                padding: 24px 16px !important;
+            }
+
+            .footer-left,
+            .footer-right {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+
+            .footer-right a {
+                margin-left: 0 !important;
+            }
+        }
     </style>
 </head>
 
@@ -1112,6 +1691,16 @@
     <!-- Top Bar Navigation -->
     <header>
 
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGYV66GZEW"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-GGYV66GZEW');
+        </script>
+
         <div class="logo">
             <a href="#intro" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
                 <img src="./photos/main/MM_logo_mono.png" alt="Logo" style="height: 32px;">
@@ -1120,30 +1709,48 @@
         <div class="logo-content">iguel Monteiro</div>
     
         <nav>
-            <a href="./embedded_docs/curriculum_vitae_260315.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="./embedded_docs/curriculum_vitae_260315.pdf" target="_blank" rel="noopener noreferrer" onclick="gtag('event', 'view_cv');">
                 <i class="fa-solid fa-file-pdf"></i> <strong>CV</strong>
             </a>
+
             <a href="https://www.linkedin.com/in/miguel-monteiro-410937252/?skipRedirect=true" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-linkedin"></i> <strong>LinkedIn</strong>
             </a>
+
             <a onclick="copyToClipboard('mail.miguelmonteiro@gmail.com')" style="cursor: pointer;">
                 <i class="fa-solid fa-envelope"></i> <strong>Email</strong>
             </a>
-            <a onclick="copyToClipboard('+351 960 416 328')" style="cursor: pointer;">
-                <i class="fa-solid fa-phone"></i> <strong>(+351) 960 416 328</strong>
-            </a>
-            <a onclick="toggleDropdown(event)" aria-label="Toggle Navigation" style="cursor: pointer;">
-                <i class="fa-solid fa-bars"></i>
-            </a>     
-        </nav>
 
-        <div id="section-dropdown" class="dropdown-menu">
-            <a href="#intro" onclick="toggleDropdown()"><i class="fa-solid fa-user"></i> Introduction</a>
-            <a href="#projects-section" onclick="toggleDropdown()"><i class="fa-solid fa-cube"></i> Projects</a>
-            <a href="#timeline-section" onclick="toggleDropdown()"><i class="fa-solid fa-timeline"></i> Achievements</a>
-            <a href="#skills-section" onclick="toggleDropdown()"><i class="fa-solid fa-gears"></i> Skills</a>
-        </div> 
-        
+            <div style="position: relative; display: inline-block;">
+                <a onclick="togglePhoneDropdown(event)" style="cursor: pointer; margin-left: 48px;">
+                    <i class="fa-solid fa-phone"></i> <strong>Phone</strong>
+                </a>
+
+                <div id="phone-dropdown" class="dropdown-menu">
+                    <a onclick="copyToClipboard('+351 960 416 328')" style="cursor: pointer;">
+                        <strong>🇵🇹</strong> +351 960 416 328
+                    </a>
+                    <a onclick="copyToClipboard('+49 163 3679401')" style="cursor: pointer;">
+                        <strong>🇩🇪</strong> +49 163 3679401
+                    </a>
+                </div>
+            </div>
+
+            <div style="position: relative; display: inline-block;">
+                <a onclick="toggleDropdown(event)" aria-label="Toggle Navigation" style="cursor: pointer; margin-left: 48px">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+
+                <div id="section-dropdown" class="dropdown-menu">
+                    <a href="#intro" onclick="toggleDropdown()"><i class="fa-solid fa-user"></i> Introduction</a>
+                    <a href="#projects-section" onclick="toggleDropdown()"><i class="fa-solid fa-cube"></i> Projects</a>
+                    <a href="#timeline-section" onclick="toggleDropdown()"><i class="fa-solid fa-timeline"></i> Achievements</a>
+                    <a href="#skills-section" onclick="toggleDropdown()"><i class="fa-solid fa-gears"></i> Skills</a>
+                    <a href="#recommendations-section" onclick="toggleDropdown()"><i class="fa-solid fa-envelope"></i> Recommendations</a>
+                </div>
+            </div>
+        </nav>
+                
     </header>
 
     <!-- Content -->
@@ -1155,8 +1762,8 @@
                 <div class="introduction-content">
                     <h1>MIGUEL<br>MONTEIRO</h1>
                     <h2>Mechanical Engineer</h2>
-                    <p>Engineering student at <strong>TUM</strong>, focused on <strong>structural analysis</strong>, <strong>lightweight design</strong> and <strong>composite materials</strong>.</p>
-                    <p>Strong interest in <strong>high-performance structures</strong>, especially within the <strong>aeronautical</strong> and <strong>automotive</strong> industries.</p>
+                    <p>Master's student at <strong>TUM</strong>, with <strong>three years</strong> of experience in <strong>motorsports</strong>. Currently focused on <strong>structural analysis</strong>, <strong>lightweight design</strong> and <strong>composite materials</strong>.</p>
+                    <p>Interested in <strong>high-performance structures</strong>, especially within <strong>aerospace</strong> and <strong>aeronautics</strong>.</p>
                 </div>
             </div>
         </section>
@@ -1165,7 +1772,7 @@
         <div id="projects-section" class="content-wrapper">
 
             <h2 class="section-title">PROJECTS</h2>
-            <p class="section-description">Click the categories to view different projects and press the cards to view more details.</p>            
+            <p class="section-description">Press the different categories to view other projects and the cards can be expanded for added details.</p>            
 
             <section class="portfolio-section">
 
@@ -1224,7 +1831,14 @@
                     </div>
                 </div>
 
-                        <div class="projects-list">
+                <div class="projects-list">
+
+                <!-- No Projects Message -->
+                <div id="no-projects-message" style="display: none; grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; color: var(--text-muted); margin-bottom: 16px;"></i>
+                    <h3 style="color: var(--accent-red); font-size: 1.5rem; margin-bottom: 8px;">No Projects Found</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">This combination of filters doesn't match any projects.</p>
+                </div>
 
                 <!--################################ START OF STRUCTURAL PROJECT CARDS ################################-->
 
@@ -1920,6 +2534,8 @@
                             </div>
                         </div>
 
+                        <!-- REPLACE inside <div class="interactive-timeline"> -->
+
                         <!-- FS 26 -->
                         <div class="timeline-item expandable" 
                             data-bg="./photos/awards/background/FS.26.png" 
@@ -1930,14 +2546,14 @@
                                 <div class="timeline-title-group">
                                     <span class="timeline-date">Jul 2026</span>
                                     <h3 class="timeline-title">Formula Student Junior Class</h3>
-                                    <span class="timeline-badge award">8 podiums finishes</span>
+                                    <span class="timeline-badge award"><i class="fa-solid fa-trophy"></i> 8 podium finishes</span>
                                     <span class="timeline-subtitle">🇨🇭 Switzerland | 🇵🇹 Portugal</span>
                                 </div>
                                 <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
                             </div>
 
                             <div class="timeline-details">
-                                <p>Contributed and defended the engineering design structural and driver interface categpry and costand manufacturing events.</p>
+                                <p>Contributed and defended the engineering design structural and driver interface category and cost and manufacturing events.</p>
                                 
                                 <div class="timeline-media">
                                     <img src="./photos/awards/info/FS.26_1.jpg" alt="Event Photo">
@@ -1947,22 +2563,29 @@
                                     <strong>1st place in all events presented</strong>, winning both competitions.
                                 </div>
                             </div>
-
                         </div>
-                        
-                        <!-- BSc THE -->
-                        <div class="timeline-item simple-mark">
+
+                        <!-- BSc THESIS -->
+                        <div class="timeline-item expandable" 
+                            data-bg="./photos/awards/background/FS.25.png" 
+                            onclick="selectTimelineCard(this)">
+
                             <div class="timeline-marker"></div>
                             <div class="timeline-header">
                                 <div class="timeline-title-group">
                                     <span class="timeline-date">Sep 2022 - Jul 2026</span>
                                     <h3 class="timeline-title">Adamastor Supercars - BSc Thesis</h3>
-                                    <span class="timeline-badge award">18/20 grade</span>
+                                    <span class="timeline-badge award"><i class="fa-solid fa-graduation-cap"></i> 18/20 Grade</span>
                                 </div>
+                                <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
                             </div>
-                        </div>
 
-                        <!--  FS 25 -->
+                            <div class="timeline-details">
+                                <p>Read more about the worked performed <a href="#modal-IF" class="link">here</a>.</p>
+                            </div>
+                        </div>                        
+
+                        <!-- FS 25 -->
                         <div class="timeline-item expandable" 
                             data-bg="./photos/awards/background/FS.25.png" 
                             onclick="selectTimelineCard(this)">
@@ -1972,7 +2595,7 @@
                                 <div class="timeline-title-group">
                                     <span class="timeline-date">Jul - Aug 2025</span>
                                     <h3 class="timeline-title">Formula Student Class</h3>
-                                    <span class="timeline-badge award">6 podiums finishes</span>                                    
+                                    <span class="timeline-badge award"><i class="fa-solid fa-trophy"></i> 6 podium finishes</span>                                    
                                     <span class="timeline-subtitle">🇳🇱 Netherlands | 🇵🇹 Portugal | 🇩🇪 Germany</span>
                                 </div>
                                 <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
@@ -1986,22 +2609,21 @@
                                 </div>
 
                                 <div class="award-callout">
-                                    2x <strong>1st places</strong> in business plan;<br>1x <strong>2nd place</strong> in design;<br>3x <strong>3rd place</strong>, marking the <strong>first Portuguese EV podium in Germany</strong>.
+                                    2 x <strong>1st places</strong> in business plan;<br>1 x <strong>2nd place</strong> in design;<br>3 x <strong>3rd place</strong>, marking the <strong>first Portuguese EV podium in Germany</strong>.
                                 </div>
                             </div>
-                            
                         </div>
 
-                        <!--  CS MG -->
+                        <!-- CS MG -->
                         <div class="timeline-item expandable" 
                             data-bg="./photos/awards/background/CS.mg25.png" 
                             onclick="selectTimelineCard(this)">
                             <div class="timeline-marker"></div>
                             <div class="timeline-header">
                                 <div class="timeline-title-group">
-                                    <span class="timeline-date">Fev 2025</span>
+                                    <span class="timeline-date">Feb 2025</span>
                                     <h3 class="timeline-title">Mec Games - Engineering Competition</h3>
-                                    <span class="timeline-badge award">1st place</span>                                    
+                                    <span class="timeline-badge award"><i class="fa-solid fa-award"></i> 1st Place</span>                                    
                                 </div>
                                 <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
                             </div>
@@ -2014,7 +2636,7 @@
                             </div>
                         </div> 
 
-                        <!--  FS 24 -->
+                        <!-- FS 24 -->
                         <div class="timeline-item expandable" 
                             data-bg="./photos/awards/background/FS.24.png" 
                             onclick="selectTimelineCard(this)">
@@ -2024,7 +2646,7 @@
                                 <div class="timeline-title-group">
                                     <span class="timeline-date">Jul - Aug 2024</span>
                                     <h3 class="timeline-title">Formula Student Junior Class</h3>
-                                    <span class="timeline-badge award">8 podium finishes</span>                                     
+                                    <span class="timeline-badge award"><i class="fa-solid fa-trophy"></i> 8 podium finishes</span>                                     
                                     <span class="timeline-subtitle">🇨🇭 Switzerland | 🇵🇹 Portugal</span>
                                 </div>
                                 <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
@@ -2041,9 +2663,8 @@
                                     <strong>1st place in all events</strong>, winning both competitions.
                                 </div>                                 
                             </div>
-                            
                         </div>                    
-                        
+
                         <!-- CS YA -->
                         <div class="timeline-item expandable" 
                             data-bg="./photos/awards/background/CS.ya24.png" 
@@ -2053,7 +2674,7 @@
                                 <div class="timeline-title-group">
                                     <span class="timeline-date">Apr 2024</span>
                                     <h3 class="timeline-title">Case Study - Yazaki</h3>
-                                    <span class="timeline-badge award">1st place</span>                                    
+                                    <span class="timeline-badge award"><i class="fa-solid fa-award"></i> 1st Place</span>                                    
                                 </div>
                                 <span class="expand-icon"><i class="fa-solid fa-angle-down"></i></span>
                             </div>
@@ -2063,7 +2684,6 @@
                                 <div class="timeline-media">
                                     <img src="./photos/awards/info/CS.ya_1.jpg" alt="Event Photo">
                                 </div>
-
                             </div>
                         </div>
                         
@@ -2154,6 +2774,31 @@
                     </div>
 
                 </div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section id="recommendations-section" class="recommendations-section">
+            
+            <h2 class="section-title">RECOMMENDATIONS</h2>
+            <p class="section-description">Endorsements from engineering directors, team leads and colleagues.</p>
+            
+            <div class="recommendations-wrapper">
+
+                <!-- Left Side: Clean Dynamic Quote Card -->
+                <div class="quote-card" id="quote-card">
+                    <div class="quote-text-container" id="quote-text-container">
+                        <span class="quote-mark open">“</span>
+                        <span id="recommendation-quote"></span>
+                        <span class="quote-mark close">”</span>
+                    </div>
+                </div>
+
+                <!-- Right Side: Interactive Card List -->
+                <div class="recommendations-menu" id="recommendations-menu">
+                    <!-- Dynamically populated via JS -->
+                </div>
+                
             </div>
         </section>
 
